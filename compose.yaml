@@ -1,4 +1,4 @@
-name: finki-analytics
+name: finki-hub-analytics
 
 services:
   mongo:

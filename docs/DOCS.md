@@ -1,6 +1,6 @@
 # Documentation
 
-This application is for collecting various analytics data from [`finki-discord-bot`](https://github.com/finki-hub/finki-discord-bot) usage. At the time of writing, it collects some data about the following informational commands which students are able to call:
+This application is for collecting various analytics data from [`finki-hub/discord-bot`](https://github.com/finki-hub/finki-discord-bot) usage. At the time of writing, it collects some data about the following informational commands which students are able to call:
 
 - `/faq`: Retrieve a document about FCSE
 - `/staff`: Retrieve information about any staff member (name, title, office, etc.)
@@ -13,7 +13,7 @@ Each event has its own data structure, consisting of metadata (user calling the 
 
 Uses [`FastAPI`](https://github.com/fastapi/fastapi) for exposing endpoints and [`MongoDB`](https://github.com/mongodb/mongo) for data storage. It was chosen over a relational database due to the fact that the analytics events are unstructured and come as JSON objects with differing schemas and data inside.
 
-The events originate from [`finki-discord-bot`](https://github.com/finki-hub/finki-discord-bot). This app exposes `/events/ingest` for ingesting and `/events/{event_name}` for querying events with options for filtering which the Discord bot uses.
+The events originate from [`finki-hub/discord-bot`](https://github.com/finki-hub/discord-bot). This app exposes `/events/ingest` for ingesting and `/events/{event_name}` for querying events with options for filtering which the Discord bot uses.
 
 ## Pipeline
 
@@ -36,9 +36,9 @@ Afterwards, this dataset is used to evaluate a range of models on Macedonian dat
 
 ## Related repositories
 
-- Discord bot: [`finki-discord-bot`](https://github.com/finki-hub/finki-discord-bot)
-- RAG chat bot: [`finki-chat-bot`](https://github.com/finki-hub/finki-chat-bot)
-- Analytics (you are currently here): [`finki-analytics`](https://github.com/finki-hub/finki-analytics)
+- Discord bot: [`finki-hub/discord-bot`](https://github.com/finki-hub/discord-bot)
+- RAG chat bot: [`finki-hub/chat-bot`](https://github.com/finki-hub/chat-bot)
+- Analytics (you are currently here): [`finki-hub/analytics`](https://github.com/finki-hub/analytics)
 - Macedonian LLMs evaluation: [`llms-evaluation`](https://github.com/Delemangi/llms-evaluation)
 
 ## Examples

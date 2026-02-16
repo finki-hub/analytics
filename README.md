@@ -1,4 +1,4 @@
-# FINKI Analytics
+# FINKI Hub / Analytics
 
 This application for collecting and analyzing arbitrary events stored as JSON, intended to be used by the other applications in the ecosystem. Uses [MongoDB](https://github.com/mongodb/mongo) for storing events.
 
@@ -12,7 +12,7 @@ This application for collecting and analyzing arbitrary events stored as JSON, i
 
 Requires Python >= 3.13 and [`uv`](https://github.com/astral-sh/uv).
 
-1. Clone the repository: `git clone https://github.com/finki-hub/finki-analytics.git`
+1. Clone the repository: `git clone https://github.com/finki-hub/analytics.git`
 2. Install dependencies: `cd api && uv sync`
 3. Prepare env. variables by copying `env.sample` to `.env` - minimum setup requires the database configuration, it can be left as is
 4. Run it: `docker compose up -d`
