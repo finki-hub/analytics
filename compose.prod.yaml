@@ -1,37 +1,42 @@
 name: finki-hub-analytics
 
-services:
-  mongo:
-    image: mongo:8
-    restart: unless-stopped
-    volumes:
-      - ./mongo-data:/data/db
-    networks:
-      - finki_stack
-    healthcheck:
-      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+networks:
+  finki_stack:
+    driver: bridge
+    name: finki_stack
+    # Set external to true to use an existing network
+    # external: true
 
+services:
   analytics:
-    image: ghcr.io/finki-hub/analytics:latest
-    ports:
-      - "8088:8088"
-    environment:
-      API_KEY: ${API_KEY}
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
-      MONGO_URL: ${MONGO_URL}
     depends_on:
       mongo:
         condition: service_healthy
+    environment:
+      API_KEY: ${API_KEY}
+      MONGO_URL: ${MONGO_URL}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    image: ghcr.io/finki-hub/analytics:latest
+    networks:
+      - finki_stack
+    ports:
+      - "8088:8088"
+    restart: unless-stopped
+
+  mongo:
+    healthcheck:
+      interval: 10s
+      retries: 5
+      test:
+        - CMD
+        - mongosh
+        - "--quiet"
+        - "--eval"
+        - db.adminCommand('ping')
+      timeout: 5s
+    image: mongo:8
     networks:
       - finki_stack
     restart: unless-stopped
-
-networks:
-  finki_stack:
-    name: finki_stack
-    driver: bridge
-    # Set external to true to use an existing network
-    # external: true
+    volumes:
+      - ./mongo-data:/data/db
